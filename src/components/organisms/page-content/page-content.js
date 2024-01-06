@@ -59,7 +59,7 @@ const PageContent = function PageContent() {
           <IconBtn
             icon={faPlus}
             onClickHandler={() => { history.push('/createRequest') }}
-            btnLabelLeft="Create Request"
+            btnLabelLeft="Request Certificate"
             btnClass="w-25 py-2"
           />
         </div>
@@ -69,7 +69,7 @@ const PageContent = function PageContent() {
           || (
             <span>
               No requests available, please create a new request
-              using the &apos;Create Request&apos; button
+              using the &apos;Request Certificate&apos; button
             </span>
           )}
       </div>
