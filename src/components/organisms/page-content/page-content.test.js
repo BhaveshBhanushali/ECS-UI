@@ -10,5 +10,3 @@ describe('The PageContent', () => {
     expect(container.firstChild).not.toBeNull()
   })
 })
-
-

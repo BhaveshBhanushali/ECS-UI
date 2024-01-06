@@ -1,7 +1,7 @@
 import React, {
   useState,
 } from 'react'
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
@@ -17,7 +17,7 @@ import './global-header.scss'
 
 const GlobalHeader = function GlobalHeader() {
   // const dispatch = useDispatch()
-  const user = useSelector((state) => state.user)
+  // const user = useSelector((state) => state.user)
   const history = useHistory()
   const [toastText] = useState('')
   const [showToast, setShowToast] = useState(false)
@@ -62,7 +62,7 @@ const GlobalHeader = function GlobalHeader() {
               }}
             >
               <img src={Logo} className="logo" alt="Logo" />
-              <div className="title"> App Title </div>
+              <div className="title"> Employee Certification Solution </div>
             </div>
           </Nav>
           <Nav className="col-6 justify-content-end rightNav">
@@ -74,7 +74,7 @@ const GlobalHeader = function GlobalHeader() {
                 />
               </Nav.Link> */}
             <div className="rightside">
-              {(user && (user?.firstName || user?.lastName)) && (
+              {/* {(user && (user?.firstName || user?.lastName)) && (
                 <div className="person__name">
                   {' '}
                   {user?.firstName || ''}
@@ -83,7 +83,7 @@ const GlobalHeader = function GlobalHeader() {
                 </div>
               )}
               {' '}
-              <img src={Logo} className="person__icon" alt="Person Icon" />
+              <img src={Logo} className="person__icon" alt="Person Icon" /> */}
             </div>
           </Nav>
         </Container>
