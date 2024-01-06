@@ -1,0 +1,42 @@
+@import '../../../styles/varaiable';
+
+ .rootError {
+    & > .modal-dialog > .modal-content {
+      box-shadow: 0px 0px 20px 5px $danger;
+    }
+  }
+  .rootInfo {
+    & > .modal-dialog > .modal-content {
+      box-shadow: 0px 0px 20px 5px $gray900;
+    }
+  }
+  .rootSuccess {
+    & > .modal-dialog > .modal-content {
+      box-shadow: 0px 0px 20px 5px $success;
+    }
+  }
+  .modalContentWrapper {
+    min-height: 200px;
+    color: $secondary;
+    // font-family: 'SFUILight';
+    font-size: 1.2rem;
+  }
+  .iconMdl {
+    font-size: 7rem !important;
+    padding: 0em !important;
+  }
+  .error {
+    color: $danger;
+  }
+  .info {
+    color: $info;
+    // font-family: 'SFUIRegular' !important;
+  }
+  .success {
+    color: $success;
+  }
+  .blueBtn {
+    background-color: $info !important;
+    border-color: $info !important;
+  }
+

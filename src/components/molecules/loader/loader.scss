@@ -1,0 +1,25 @@
+@import  '../../../styles/varaiable';
+
+.LoaderlabelText {
+    top: 55%;
+    font-weight: 800;
+    color: $secondary;
+    font-size: 2.5rem;
+    left: 0 !important;
+    width: 100vw;
+    text-transform: uppercase;
+    -webkit-user-select: none;
+  }
+  .LoaderRoot {
+    background: $transperentGrey;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+  }
+  .spinner {
+    width: 80px !important;
+    height: 80px !important;
+    top: 40%;
+    left: calc(50% - 30px);
+  }
+

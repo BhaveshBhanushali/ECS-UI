@@ -1,0 +1,50 @@
+@import "./varaiable.scss";
+
+// @font-face {
+//   font-family: 'SFUIRegular';
+//   src: local('SFUIRegular'), url('../assets/fonts/SFText-Regular.otf') format('opentype');
+// }
+
+html {
+//   font-family: "SFUIRegular";
+  font-size: 14px;
+  height: 100%;
+}
+body, #root {
+  background-color: #ffffff;
+  color: black;
+  height: 100%;
+  margin: 0;
+}
+svg {
+  height: 1em;
+}
+.full-height-container {
+  height: 100% !important;
+}
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+.flexGrow {
+  flex-grow: 1;
+}
+.cursorPointer {
+  cursor: pointer;
+}
+.linkBlue,
+.linkBlue:hover {
+    // font-family: "SFUILight";
+    font-size: 11px;
+    color: $blueLinkColor;
+    text-decoration: none;
+    cursor: pointer;
+}
+.displayNone {
+  display: none !important;
+}
+

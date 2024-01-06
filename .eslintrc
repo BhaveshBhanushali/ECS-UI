@@ -1,0 +1,82 @@
+{
+  "extends": [
+    "airbnb"
+  ],
+  "env": {
+    "jest": true,
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": true
+  },
+  "rules": {
+    "react/jsx-wrap-multilines": "error",
+    "no-console": ["error", {"allow": ["warn", "error", "info"] }],
+    "import/no-cycle": [
+      "error",
+      {
+        "maxDepth": "∞"
+      }
+    ],
+    "import/no-extraneous-dependencies": 0,
+    "react/static-property-placement": 0,
+    "class-methods-use-this": 0,
+    "react/jsx-no-bind": 0,
+    "no-unused-vars": 1,
+    "react/no-did-update-set-state": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "semi": [2, "never"],
+    "react/jsx-props-no-spreading": "off",
+    "import/no-named-as-default": 0,
+    "no-unused-expressions": 0,
+    "no-restricted-syntax": 0,
+    "prefer-destructuring": [
+      "error",
+      {
+        "VariableDeclarator": {
+          "array": false,
+          "object": true
+        },
+        "AssignmentExpression": {
+          "array": false,
+          "object": false
+        }
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ]
+  },
+  "plugins": [
+    "jss",
+    "import"
+  ],
+  "globals": {
+    "APPCONFIG": "writable",
+    "isRemote": "writable"
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.test.js",
+        "**/*.test.jsx"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}
+

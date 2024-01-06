@@ -1,0 +1,117 @@
+@import "../../../styles/varaiable";
+
+.navRoot {
+  background-image: linear-gradient(#323333, #323333);
+  min-height: 55px;
+  padding: 1px 0;
+  & > .container > a,
+  & > .container > .navbar-collapse > .navbar-nav > .nav-link,
+  & > .container > .navbar-collapse > .navbar-nav > .nav-item > .nav-link {
+    color: white !important;
+  }
+}
+.popover {
+  width: 347px !important;
+  max-width: 347px !important;
+}
+
+.popoverSettings {
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  color: #3c5259;
+  width: 347px;
+  max-width: 347px;
+}
+
+.popoverSettingsBody {
+  width: 347px !important;
+  max-width: 347px !important;
+}
+.rightNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .iconBtnRoot {
+    background: none !important;
+  }
+
+  @media (max-width: 991px) {
+    flex-direction: row;
+  }
+}
+.leftNav {
+  .iconBtnRoot {
+    background: none !important;
+  }
+  @media (max-width: 991px) {
+    & > .btn {
+      max-width: 120px;
+    }
+  }
+}
+
+.headerroot {
+  background-color: rgb(50, 51, 51);
+  display: flex;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.leftside {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.leftside:hover {
+  cursor: pointer;
+}
+
+.logo {
+  display: flex;
+  object-fit: contain;
+  width: 45px;
+  height: 45px;
+}
+
+.title {
+  font-family: SFUILight;
+  font-size: 18px;
+  padding-left: 15px;
+}
+
+.rightside {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.person__name {
+  font-family: SFUIRegular;
+  font-size: 14px;
+}
+
+.person__icon {
+  display: flex;
+  object-fit: contain;
+  width: 15px;
+  margin-left: 10px;
+}
+
+.logout {
+  display: flex;
+  object-fit: contain;
+  width: 45px;
+  margin-bottom: -10px;
+  margin-left: -10px;
+}
+
+.logout:hover {
+  cursor: pointer;
+}
+
+
