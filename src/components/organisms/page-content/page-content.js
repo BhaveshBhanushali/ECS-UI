@@ -50,16 +50,18 @@ const PageContent = function PageContent() {
 
   return (
     <div className="row flexGrow mx-0">
-      <PageTitle titleText="Sample React App" />
-      {(ecsRequests && ecsRequests?.length > 0 && (
-        <ECSRequestsTable ecsRequestList={ecsRequests} />
-      ))
-        || (
-          <span>
-            No requests available, please create a new request
-            using the &apos;Create Request&apos; button
-          </span>
-        )}
+      <div className="col pt-2 flexGrow align-top justify-content-start">
+        <PageTitle titleText="Employee Certificate Requests" />
+        {(ecsRequests && ecsRequests?.length > 0 && (
+          <ECSRequestsTable ecsRequestList={ecsRequests} />
+        ))
+          || (
+            <span>
+              No requests available, please create a new request
+              using the &apos;Create Request&apos; button
+            </span>
+          )}
+      </div>
     </div>
   )
 }

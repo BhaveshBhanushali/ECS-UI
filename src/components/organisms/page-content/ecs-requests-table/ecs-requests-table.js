@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Table, Form } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types'
 import './ecs-requests-table.scss'
 
@@ -8,6 +10,7 @@ const ECSRequestsTable = function ECSRequestsTable({
 }) {
   const [filteredData, setFilteredData] = useState(ecsRequestList)
   const [sortKey, setSortKey] = useState(null)
+  const [isAscSort, setIsAscSort] = useState(true)
   const [filterValues, setFilterValues] = useState({})
 
   const handleFilterChange = (field, value) => {
@@ -20,23 +23,68 @@ const ECSRequestsTable = function ECSRequestsTable({
     let filtered = JSON.parse(JSON.stringify(ecsRequestList))
     for (const key in updatedFilter) {
       if (updatedFilter[key]) {
-        filtered = filtered.filter((i) => i[key].toString().toLowerCase()
-          .includes(updatedFilter[key].toString().toLowerCase()))
+        if ((key === 'reference_no' || key === 'status')) {
+          filtered = filtered.filter((i) => i[key].toString().toLowerCase()
+            === updatedFilter[key].toString().toLowerCase())
+        } else {
+          filtered = filtered.filter((i) => i[key].toString().toLowerCase()
+            .includes(updatedFilter[key].toString().toLowerCase()))
+        }
       }
     }
     setFilteredData(filtered)
   }
 
-  const handleSort = (key) => {
-    const sortedData = [...filteredData].sort((a, b) => a[key].localeCompare(b[key]))
+  const handleSort = (key, isDate) => {
+    const sortAsc = key === sortKey ? !isAscSort : true
 
+    let sortedData = [...filteredData]
+    if (isDate) {
+      sortedData = [...filteredData].sort((a, b) => {
+        const dateA = new Date(a[key])
+        const dateB = new Date(b[key])
+
+        return sortAsc ? dateA - dateB : dateB - dateA
+      })
+    } else {
+      sortedData = [...filteredData].sort((a, b) => {
+        const valA = a[key].toString().toUpperCase()
+        const valB = b[key].toString().toUpperCase()
+
+        if (valA < valB) {
+          return sortAsc ? -1 : 1
+        }
+        if (valA > valB) {
+          return sortAsc ? 1 : -1
+        }
+        return 0
+      })
+    }
     setSortKey(key)
+    setIsAscSort(sortAsc)
     setFilteredData(sortedData)
   }
 
   const getHeaderCell = (colName, dataKey, hasFilter, hasSorting) => (
-    <th>
-      {colName}
+    <th className="align-top rq-tbl-header">
+      {(hasSorting && (
+        <span
+          className="pb-2 d-flex w-100 justify-content-between cursorPointer"
+          onClick={() => handleSort(dataKey, dataKey === 'issued_on')}
+        >
+          {colName}
+          {(sortKey === dataKey && (
+            (isAscSort && <FontAwesomeIcon className="pt-2" icon={faSortUp} />)
+            || <FontAwesomeIcon icon={faSortDown} />
+          )) || <FontAwesomeIcon className="pt-1" icon={faSort} />}
+        </span>
+      )) || (
+      <span
+        className="pb-2 d-flex w-100 justify-content-between"
+      >
+        {colName}
+      </span>
+      )}
 
       {hasFilter && (
         <Form.Control
@@ -46,17 +94,11 @@ const ECSRequestsTable = function ECSRequestsTable({
           value={filterValues[dataKey] || ''}
         />
       )}
-
-      {hasSorting && (
-        <span onClick={() => handleSort(dataKey)}>
-          {(sortKey === dataKey && 'DEC') || 'ASC'}
-        </span>
-      )}
     </th>
   )
 
   return (
-    <div>
+    <div className="pt-3">
       <Table striped bordered hover>
         <thead>
           <tr>
