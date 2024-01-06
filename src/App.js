@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import './App.scss'
 import Home from './components/pages/home'
 import NotFound from './components/pages/notFound'
+import CreateRequest from './components/pages/createRequest'
 import Loader from './components/molecules/loader'
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
     <div className="full-height-container">
       <Router>
         <Switch>
+          <Route exact path="/createRequest">
+            <CreateRequest />
+          </Route>
           <Route exact path="/home">
             <Home />
           </Route>
