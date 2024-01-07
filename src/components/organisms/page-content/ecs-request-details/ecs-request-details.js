@@ -27,9 +27,11 @@ const ECSRequestDetails = function ECSRequestDetails({
   const [requestDtls, setRequestDtls] = useState(null)
   const [validated, setValidated] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
+  const [prevPurpose, setPrevPurpose] = useState('')
 
   useEffect(() => {
     setRequestDtls(ecsRequest)
+    setPrevPurpose(ecsRequest?.purpose || '')
   }, [ecsRequest])
 
   const generateAndDisplayPdf = () => {
@@ -65,13 +67,14 @@ const ECSRequestDetails = function ECSRequestDetails({
       console.info('Update Req Store')
 
       const index = allECSRequests.findIndex((r) => r.reference_no === ecsRequest.reference_no
-        && r.status === ecsRequest.status && r.purpose === ecsRequest.purpose
+        && r.status === ecsRequest.status && r.purpose === prevPurpose
         && r.address_to === ecsRequest.address_to && r.issued_on === ecsRequest.issued_on)
       console.info('index', index)
       if (index !== -1) {
         const updatedRequests = JSON.parse(JSON.stringify(allECSRequests))
         updatedRequests[index] = requestDtls
         console.info('index updatedRequests', updatedRequests)
+        setPrevPurpose(requestDtls.purpose)
         dispatch(setECSRequests(updatedRequests))
       }
       setIsEditing(false)
