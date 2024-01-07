@@ -1,7 +1,7 @@
-import SampleAPI from './sample-api'
+import ECSAPI from './ecs-api'
 
 const api = {
-  sampleAPI: new SampleAPI(),
+  ecsAPI: new ECSAPI(),
 }
 
 export default api

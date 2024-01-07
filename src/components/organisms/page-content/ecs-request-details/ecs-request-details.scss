@@ -1,0 +1,27 @@
+@import '../../../../styles/varaiable';
+
+.rqDtlLabel {
+  font-weight: 500;
+  font-size: 1.2rem;
+  min-width: fit-content;
+}
+
+.rqDtlValue {
+  font-size: 1.1rem;
+  line-height: 1.2rem;
+  vertical-align: bottom;
+  font-weight: 100;
+  padding-top: 3px;
+}
+
+.certPdfViewContainer {
+  border: 1px solid #ccc;
+}
+
+.miniBtn {
+  width: 20px !important;
+  max-width: 20px !important;
+  height: 20px !important;
+  background-color: transparent !important;
+  border: transparent !important;
+}

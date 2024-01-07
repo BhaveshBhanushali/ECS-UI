@@ -28,6 +28,7 @@
     "react/no-did-update-set-state": 0,
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/label-has-associated-control": "off",
     "react/jsx-filename-extension": [
       1,
       {
@@ -61,7 +62,8 @@
   },
   "plugins": [
     "jss",
-    "import"
+    "import",
+    "jsx-a11y"
   ],
   "globals": {
     "APPCONFIG": "writable",
