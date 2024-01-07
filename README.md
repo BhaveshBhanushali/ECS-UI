@@ -1,6 +1,10 @@
 # ECS-UI
 Employee Certification Solution - UI (MVP)
 
+### `npm install`
+
+Installs the required package dependencies\
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -26,4 +30,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### Hosted/Deployed App URL: 
 
-[https://URL](https://URL)
+[https://ecs-ui.netlify.app/](https://ecs-ui.netlify.app/)
