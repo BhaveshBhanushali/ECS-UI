@@ -49,6 +49,7 @@ const PageContent = function PageContent() {
     if (!ecsRequests) {
       getECSRequestList()
     }
+    console.info('called ====>> ', ecsRequests)
   }, [ecsRequests])
 
   return (
@@ -64,7 +65,7 @@ const PageContent = function PageContent() {
           />
         </div>
         {(ecsRequests && ecsRequests?.length > 0 && (
-          <ECSRequestsTable ecsRequestList={ecsRequests} />
+          <ECSRequestsTable />
         ))
           || (
             <span>

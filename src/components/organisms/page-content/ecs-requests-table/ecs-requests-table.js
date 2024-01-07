@@ -1,18 +1,18 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useSelector, shallowEqual } from 'react-redux'
 import { Table, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faSort, faSortUp, faSortDown, faFileInvoice,
 } from '@fortawesome/free-solid-svg-icons'
-import PropTypes from 'prop-types'
 import ECSRequestDetails from '../ecs-request-details'
 import IconBtn from '../../../atoms/icon-btn'
 import './ecs-requests-table.scss'
 
-const ECSRequestsTable = function ECSRequestsTable({
-  ecsRequestList,
-}) {
+const ECSRequestsTable = function ECSRequestsTable() {
+  const ecsRequestList = useSelector((state) => state.user.ecsRequests, shallowEqual)
+
   const [filteredData, setFilteredData] = useState(ecsRequestList)
   const [sortKey, setSortKey] = useState(null)
   const [isAscSort, setIsAscSort] = useState(true)
@@ -56,9 +56,12 @@ const ECSRequestsTable = function ECSRequestsTable({
   }
 
   const handleFilterChange = (field, value) => {
-    const updatedFilter = {
-      ...filterValues,
-      [field]: value,
+    let updatedFilter = filterValues
+    if (field && value) {
+      updatedFilter = {
+        ...filterValues,
+        [field]: value,
+      }
     }
     setFilterValues(updatedFilter)
 
@@ -113,6 +116,11 @@ const ECSRequestsTable = function ECSRequestsTable({
     </th>
   )
 
+  useEffect(() => {
+    console.info('called INNN ====>> ', ecsRequestList)
+    handleFilterChange()
+  }, [ecsRequestList])
+
   return (
     <div className="pt-3">
       <Table striped bordered hover>
@@ -162,12 +170,12 @@ const ECSRequestsTable = function ECSRequestsTable({
     </div>
   )
 }
-ECSRequestsTable.defaultProps = {
-  ecsRequestList: [],
-}
+// ECSRequestsTable.defaultProps = {
+//   ecsRequestList: [],
+// }
 
-ECSRequestsTable.propTypes = {
-  ecsRequestList: PropTypes.oneOfType([PropTypes.array]),
-}
+// ECSRequestsTable.propTypes = {
+//   ecsRequestList: PropTypes.oneOfType([PropTypes.array]),
+// }
 
 export default ECSRequestsTable
