@@ -64,16 +64,13 @@ const ECSRequestDetails = function ECSRequestDetails({
     event.preventDefault()
     event.stopPropagation()
     if (form.checkValidity() === true) {
-      console.info('Update Req Store')
-
       const index = allECSRequests.findIndex((r) => r.reference_no === ecsRequest.reference_no
         && r.status === ecsRequest.status && r.purpose === prevPurpose
         && r.address_to === ecsRequest.address_to && r.issued_on === ecsRequest.issued_on)
-      console.info('index', index)
+
       if (index !== -1) {
         const updatedRequests = JSON.parse(JSON.stringify(allECSRequests))
         updatedRequests[index] = requestDtls
-        console.info('index updatedRequests', updatedRequests)
         setPrevPurpose(requestDtls.purpose)
         dispatch(setECSRequests(updatedRequests))
       }

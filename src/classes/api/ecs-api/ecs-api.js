@@ -40,8 +40,6 @@ class ECSAPI {
     }
   }
 
-  // getHostURL = () => `${window.location.origin}`
-
   getBaseURL = () => '/api'
 
   getAPIHeaders = () => ({

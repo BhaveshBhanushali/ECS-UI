@@ -117,7 +117,6 @@ const ECSRequestsTable = function ECSRequestsTable() {
   )
 
   useEffect(() => {
-    console.info('called INNN ====>> ', ecsRequestList)
     handleFilterChange()
   }, [ecsRequestList])
 
@@ -170,12 +169,5 @@ const ECSRequestsTable = function ECSRequestsTable() {
     </div>
   )
 }
-// ECSRequestsTable.defaultProps = {
-//   ecsRequestList: [],
-// }
-
-// ECSRequestsTable.propTypes = {
-//   ecsRequestList: PropTypes.oneOfType([PropTypes.array]),
-// }
 
 export default ECSRequestsTable

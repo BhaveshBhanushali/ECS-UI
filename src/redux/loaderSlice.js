@@ -17,7 +17,6 @@ export const loaderSlice = createSlice({
   },
 })
 
-// Action creators are generated for each case reducer function
 export const {
   setLoaderVisibility, setLoadingText,
 } = loaderSlice.actions

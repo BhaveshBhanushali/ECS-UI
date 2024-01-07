@@ -1,12 +1,6 @@
 @import "./varaiable.scss";
 
-// @font-face {
-//   font-family: 'SFUIRegular';
-//   src: local('SFUIRegular'), url('../assets/fonts/SFText-Regular.otf') format('opentype');
-// }
-
 html {
-//   font-family: "SFUIRegular";
   font-size: 14px;
   height: 100%;
 }
@@ -38,7 +32,6 @@ svg {
 }
 .linkBlue,
 .linkBlue:hover {
-    // font-family: "SFUILight";
     font-size: 11px;
     color: $blueLinkColor;
     text-decoration: none;

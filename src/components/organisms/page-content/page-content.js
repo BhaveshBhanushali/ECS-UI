@@ -3,7 +3,6 @@ import React, {
 } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-// import PropTypes from 'prop-types'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import './page-content.scss'
 import {
@@ -49,7 +48,6 @@ const PageContent = function PageContent() {
     if (!ecsRequests) {
       getECSRequestList()
     }
-    console.info('called ====>> ', ecsRequests)
   }, [ecsRequests])
 
   return (

@@ -1,7 +1,6 @@
 @import '../../../styles/varaiable';
 
 .contentWrapper {
-    // background-color: $backgroundColor;
     min-height: calc(100vh - $FOOTER_HEIGHT);
     overflow: auto;
     padding-top: $HEADER_HEIGHT;

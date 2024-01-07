@@ -2,12 +2,12 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 
 module.exports = (app) => {
   app.use(
-    '/api', // Specify the API endpoint you want to proxy
+    '/api',
     createProxyMiddleware({
-      target: 'https://zalexinc.azure-api.net', // Specify the target URL
+      target: 'https://zalexinc.azure-api.net',
       changeOrigin: true,
       pathRewrite: {
-        '^/api': '', // Remove the "/api" prefix from the request path
+        '^/api': '',
       },
     }),
   )

@@ -9,7 +9,6 @@ import Row from 'react-bootstrap/Row'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useSelector, useDispatch } from 'react-redux'
-// import PropTypes from 'prop-types'
 import './create-request-content.scss'
 import {
   setLoaderVisibility,
