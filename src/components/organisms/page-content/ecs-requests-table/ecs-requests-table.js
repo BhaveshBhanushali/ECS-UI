@@ -68,8 +68,11 @@ const ECSRequestsTable = function ECSRequestsTable({
       }
     }
 
-    const sortedData = sortData(filtered, sortKey, sortKey === 'issued_on', isAscSort)
-    setFilteredData(sortedData)
+    if (sortKey) {
+      filtered = sortData(filtered, sortKey, sortKey === 'issued_on', isAscSort)
+    }
+
+    setFilteredData(filtered)
   }
 
   const getHeaderCell = (colName, dataKey, hasFilter, hasSorting) => (
@@ -136,7 +139,7 @@ ECSRequestsTable.defaultProps = {
 }
 
 ECSRequestsTable.propTypes = {
-  ecsRequestList: PropTypes.oneOfType(Array),
+  ecsRequestList: PropTypes.oneOfType([PropTypes.array]),
 }
 
 export default ECSRequestsTable
