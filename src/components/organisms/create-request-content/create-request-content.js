@@ -16,14 +16,18 @@ import {
   setLoadingText,
 } from '../../../redux/loaderSlice'
 import { setECSRequests } from '../../../redux/userSlice'
+import { MESSAGE_TYPES } from '../../../data/constants'
 import api from '../../../classes/api'
 import PageTitle from '../../atoms/page-title'
+import Modal from '../../molecules/modal'
 
 const CreateRequestContent = function CreateRequestContent() {
   const dispatch = useDispatch()
   const history = useHistory()
   const ecsRequests = useSelector((state) => state.user.ecsRequests)
 
+  const [isModelVisible, setIsModelVisible] = useState(false)
+  const [modalType, setModalType] = useState(MESSAGE_TYPES.success)
   const [validated, setValidated] = useState(false)
   const [formData, setFormData] = useState({
     address_to: '',
@@ -71,12 +75,16 @@ const CreateRequestContent = function CreateRequestContent() {
       if (resp && resp.responce === 'Ok') {
         const requests = [...ecsRequests, { ...data, reference_no: ecsRequests.length + 101, status: 'New' }]
         dispatch(setECSRequests(requests))
-        history.push('/')
+        setModalType(MESSAGE_TYPES.success)
+      } else {
+        setModalType(MESSAGE_TYPES.error)
       }
     } catch (err) {
       console.error('Failed to create ECS Certificate request: ', err)
+      setModalType(MESSAGE_TYPES.error)
     } finally {
       hideLoader()
+      setIsModelVisible(true)
     }
   }
 
@@ -197,12 +205,28 @@ const CreateRequestContent = function CreateRequestContent() {
     </Form>
   )
 
+  const handleModalClose = (reqState) => {
+    setIsModelVisible(false)
+    if (reqState === MESSAGE_TYPES.success) {
+      history.push('/')
+    }
+  }
+
   return (
     <div className="row flexGrow mx-0">
       <div className="col pt-2 flexGrow align-top justify-content-start">
         <PageTitle titleText="Create Employee Certificate Request" />
         {renderRequestForm()}
       </div>
+      <Modal
+        modalCloseHandler={() => { handleModalClose(modalType) }}
+        messageText={modalType === MESSAGE_TYPES.success ? 'Successfully Submitted Certificate Request' : 'Error Submitting Certificate Request. \n Please try again!'}
+        titleText={modalType === MESSAGE_TYPES.success ? 'Success' : 'Error'}
+        isVisible={isModelVisible}
+        modalType={modalType}
+        primaryBtnText="OK"
+        primaryBtnHandler={() => { handleModalClose(modalType) }}
+      />
     </div>
   )
 }
