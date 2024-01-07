@@ -13,6 +13,41 @@ const ECSRequestsTable = function ECSRequestsTable({
   const [isAscSort, setIsAscSort] = useState(true)
   const [filterValues, setFilterValues] = useState({})
 
+  const sortData = (data, key, isDate, sortAsc) => {
+    let sortedData = [...data]
+    if (isDate) {
+      sortedData = [...data].sort((a, b) => {
+        const dateA = new Date(a[key])
+        const dateB = new Date(b[key])
+
+        return sortAsc ? dateA - dateB : dateB - dateA
+      })
+    } else {
+      sortedData = [...data].sort((a, b) => {
+        const valA = a[key].toString().toUpperCase()
+        const valB = b[key].toString().toUpperCase()
+
+        if (valA < valB) {
+          return sortAsc ? -1 : 1
+        }
+        if (valA > valB) {
+          return sortAsc ? 1 : -1
+        }
+        return 0
+      })
+    }
+    return sortedData
+  }
+
+  const handleSort = (key, isDate) => {
+    const sortAsc = key === sortKey ? !isAscSort : true
+    const sortedData = sortData(filteredData, key, isDate, sortAsc)
+
+    setSortKey(key)
+    setIsAscSort(sortAsc)
+    setFilteredData(sortedData)
+  }
+
   const handleFilterChange = (field, value) => {
     const updatedFilter = {
       ...filterValues,
@@ -32,36 +67,8 @@ const ECSRequestsTable = function ECSRequestsTable({
         }
       }
     }
-    setFilteredData(filtered)
-  }
 
-  const handleSort = (key, isDate) => {
-    const sortAsc = key === sortKey ? !isAscSort : true
-
-    let sortedData = [...filteredData]
-    if (isDate) {
-      sortedData = [...filteredData].sort((a, b) => {
-        const dateA = new Date(a[key])
-        const dateB = new Date(b[key])
-
-        return sortAsc ? dateA - dateB : dateB - dateA
-      })
-    } else {
-      sortedData = [...filteredData].sort((a, b) => {
-        const valA = a[key].toString().toUpperCase()
-        const valB = b[key].toString().toUpperCase()
-
-        if (valA < valB) {
-          return sortAsc ? -1 : 1
-        }
-        if (valA > valB) {
-          return sortAsc ? 1 : -1
-        }
-        return 0
-      })
-    }
-    setSortKey(key)
-    setIsAscSort(sortAsc)
+    const sortedData = sortData(filtered, sortKey, sortKey === 'issued_on', isAscSort)
     setFilteredData(sortedData)
   }
 
