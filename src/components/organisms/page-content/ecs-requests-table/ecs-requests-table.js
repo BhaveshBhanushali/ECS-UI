@@ -57,7 +57,7 @@ const ECSRequestsTable = function ECSRequestsTable() {
 
   const handleFilterChange = (field, value) => {
     let updatedFilter = filterValues
-    if (field && value) {
+    if (field) {
       updatedFilter = {
         ...filterValues,
         [field]: value,

@@ -89,7 +89,11 @@ const ECSRequestDetails = function ECSRequestDetails({
   }
 
   const discardChanges = () => {
-    setRequestDtls(ecsRequest)
+    const req = {
+      ...ecsRequest,
+      purpose: prevPurpose,
+    }
+    setRequestDtls(req)
     setIsEditing(false)
   }
 

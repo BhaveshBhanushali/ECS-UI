@@ -1,10 +1,9 @@
 @import '../../../styles/varaiable';
 
 .contentWrapper {
-    min-height: calc(100vh - $FOOTER_HEIGHT);
-    overflow: auto;
-    padding-top: $HEADER_HEIGHT;
-    width: 100%;
-  }
-
-
+  background-color: $pageBackground;
+  min-height: calc(100vh - $FOOTER_HEIGHT);
+  overflow: auto;
+  padding-top: $HEADER_HEIGHT;
+  width: 100%;
+}
