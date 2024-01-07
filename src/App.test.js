@@ -10,6 +10,24 @@ const store = mockStore({
     isLoaderVisible: true,
     loadingText: 'Loading',
   },
+  user: {
+    ecsRequests: [
+      {
+        reference_no: 100,
+        status: 'Done',
+        address_to: 'Embassy of Earth',
+        issued_on: '6/16/2023',
+        purpose: 'Visa Formality',
+      },
+      {
+        address_to: 'Embassy of Earth',
+        issued_on: '8/20/2023',
+        purpose: 'Visa Formality',
+        reference_no: 91,
+        status: 'Pending',
+      },
+    ],
+  },
 })
 
 describe('The App', () => {

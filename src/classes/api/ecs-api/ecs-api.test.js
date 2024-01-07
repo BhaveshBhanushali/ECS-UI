@@ -39,7 +39,7 @@ describe('ECSAPI methods', () => {
 
       expect(axios).toHaveBeenCalledWith({
         method: 'get',
-        url: `${ecsAPI.getHostURL()}/request-list?subscription-key=${process.env.REACT_APP_SUBSCRIPTION_KEY}`,
+        url: `${ecsAPI.getBaseURL()}/request-list?subscription-key=${process.env.REACT_APP_SUBSCRIPTION_KEY}`,
         headers: ecsAPI.getAPIHeaders(),
       })
 
