@@ -1,8 +1,13 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState } from 'react'
 import { Table, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
+import {
+  faSort, faSortUp, faSortDown, faFileInvoice,
+} from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types'
+import ECSRequestDetails from '../ecs-request-details'
+import IconBtn from '../../../atoms/icon-btn'
 import './ecs-requests-table.scss'
 
 const ECSRequestsTable = function ECSRequestsTable({
@@ -12,6 +17,8 @@ const ECSRequestsTable = function ECSRequestsTable({
   const [sortKey, setSortKey] = useState(null)
   const [isAscSort, setIsAscSort] = useState(true)
   const [filterValues, setFilterValues] = useState({})
+  const [selectedReqDetails, setSelectedReqDetails] = useState(null)
+  const [isRequestDetailsVisible, setIsRequestDetailsVisible] = useState(false)
 
   const sortData = (data, key, isDate, sortAsc) => {
     let sortedData = [...data]
@@ -88,13 +95,12 @@ const ECSRequestsTable = function ECSRequestsTable({
             || <FontAwesomeIcon icon={faSortDown} />
           )) || <FontAwesomeIcon className="pt-1" icon={faSort} />}
         </span>
-      )) || (
-      <span
-        className="pb-2 d-flex w-100 justify-content-between"
-      >
-        {colName}
-      </span>
-      )}
+      ))
+        || (
+          <span className="pb-2 d-flex w-100 justify-content-between">
+            {colName}
+          </span>
+        )}
 
       {hasFilter && (
         <Form.Control
@@ -117,6 +123,9 @@ const ECSRequestsTable = function ECSRequestsTable({
             {getHeaderCell('Purpose', 'purpose', false, false)}
             {getHeaderCell('Issued on', 'issued_on', false, true)}
             {getHeaderCell('Status', 'status', true, true)}
+            <th className="align-top rq-tbl-header">
+              {' '}
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -127,10 +136,29 @@ const ECSRequestsTable = function ECSRequestsTable({
               <td>{req.purpose}</td>
               <td>{req.issued_on}</td>
               <td>{req.status}</td>
+              <td>
+                <IconBtn
+                  icon={faFileInvoice}
+                  onClickHandler={() => {
+                    setSelectedReqDetails(req)
+                    setIsRequestDetailsVisible(true)
+                  }}
+                  btnClass="py-2"
+                  tooltipText="View Certificate Details"
+                />
+              </td>
             </tr>
           ))}
         </tbody>
       </Table>
+      <ECSRequestDetails
+        ecsRequest={selectedReqDetails}
+        showModal={isRequestDetailsVisible}
+        onModalClose={() => {
+          setIsRequestDetailsVisible(false)
+          setSelectedReqDetails(null)
+        }}
+      />
     </div>
   )
 }
