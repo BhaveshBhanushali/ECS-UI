@@ -3,7 +3,13 @@ Employee Certification Solution - UI (MVP)
 
 ### `npm install`
 
-Installs the required package dependencies\
+Installs the required package dependencies.
+
+### Add/Update the 'API - Subscription Key'
+To set the "REACT_APP_SUBSCRIPTION_KEY" in the `.env` file (placed in the app's root folder), replace the `<INSERT API KEY HERE>` with a valid API-Key value in the below code.
+````
+    REACT_APP_SUBSCRIPTION_KEY=<INSERT API KEY HERE>
+````
 
 ### `npm start`
 
